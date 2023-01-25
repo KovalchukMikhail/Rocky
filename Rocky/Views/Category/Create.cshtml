@@ -23,7 +23,7 @@
                         <label asp-for="DisplayOrder"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="DisplayOrder" class="form-control" />
+                        <input type="number" min="0" step="1" asp-for="DisplayOrder" class="form-control" />
                         <span asp-validation-for="DisplayOrder" class="text-danger"></span>
                     </div>
 
