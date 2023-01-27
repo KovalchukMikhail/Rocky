@@ -11,8 +11,8 @@ using Rocky.Data;
 namespace Rocky.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230125120817_AddProductToDatabase")]
-    partial class AddProductToDatabase
+    [Migration("20230127093118_AddAllSecond")]
+    partial class AddAllSecond
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,28 +26,28 @@ namespace Rocky.Migrations
 
             modelBuilder.Entity("Rocky.Models.ApplicationType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ApplicationTypeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ApplicationTypeId"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ApplicationTypeId");
 
                     b.ToTable("ApplicationType");
                 });
 
             modelBuilder.Entity("Rocky.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<int>("DisplayOrder")
                         .HasColumnType("int");
@@ -56,18 +56,21 @@ namespace Rocky.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Category");
                 });
 
             modelBuilder.Entity("Rocky.Models.Product", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+
+                    b.Property<int>("ApplicationTypeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -77,7 +80,6 @@ namespace Rocky.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -87,7 +89,9 @@ namespace Rocky.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("ApplicationTypeId");
 
                     b.HasIndex("CategoryId");
 
@@ -96,11 +100,19 @@ namespace Rocky.Migrations
 
             modelBuilder.Entity("Rocky.Models.Product", b =>
                 {
+                    b.HasOne("Rocky.Models.ApplicationType", "ApplicationType")
+                        .WithMany()
+                        .HasForeignKey("ApplicationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Rocky.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationType");
 
                     b.Navigation("Category");
                 });

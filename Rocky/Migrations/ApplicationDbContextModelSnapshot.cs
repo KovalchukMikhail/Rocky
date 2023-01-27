@@ -66,6 +66,9 @@ namespace Rocky.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
+                    b.Property<int>("ApplicationTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -74,7 +77,6 @@ namespace Rocky.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -84,7 +86,13 @@ namespace Rocky.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<string>("ShortDesc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ProductId");
+
+                    b.HasIndex("ApplicationTypeId");
 
                     b.HasIndex("CategoryId");
 
@@ -93,11 +101,19 @@ namespace Rocky.Migrations
 
             modelBuilder.Entity("Rocky.Models.Product", b =>
                 {
+                    b.HasOne("Rocky.Models.ApplicationType", "ApplicationType")
+                        .WithMany()
+                        .HasForeignKey("ApplicationTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Rocky.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationType");
 
                     b.Navigation("Category");
                 });

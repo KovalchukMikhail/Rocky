@@ -20,11 +20,12 @@ namespace Rocky.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Product> objList = _db.Product;
-            foreach (var obj in objList)
-            {
-                obj.Category = _db.Category.FirstOrDefault(u => u.CategoryId == obj.CategoryId);
-            }
+            IEnumerable<Product> objList = _db.Product.Include(u=>u.Category).Include(u=>u.ApplicationType);
+            //foreach (var obj in objList)
+            //{
+            //    obj.Category = _db.Category.FirstOrDefault(u => u.CategoryId == obj.CategoryId);
+            //    obj.ApplicationType = _db.ApplicationType.FirstOrDefault(u => u.ApplicationTypeId == obj.ApplicationTypeId);
+            //}
 
             return View(objList);
         }
@@ -48,7 +49,14 @@ namespace Rocky.Controllers
                 {
                     Text = i.Name,
                     Value = i.CategoryId.ToString(),
+                }),
+
+                ApplicationTypeSelectList = _db.ApplicationType.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.ApplicationTypeId.ToString(),
                 })
+
             };
 
             if (id == null) return View(productVM);
@@ -123,6 +131,13 @@ namespace Rocky.Controllers
                 Text = i.Name,
                 Value = i.CategoryId.ToString(),
             });
+
+            productVM.ApplicationTypeSelectList = _db.ApplicationType.Select(i => new SelectListItem
+            {
+                Text = i.Name,
+                Value = i.ApplicationTypeId.ToString(),
+            });
+
             return View(productVM);
         }
 
@@ -130,7 +145,7 @@ namespace Rocky.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0) return NotFound();
-            Product product = _db.Product.Include(u=>u.Category).FirstOrDefault(u=>u.ProductId == id);
+            Product product = _db.Product.Include(u=>u.Category).Include(u => u.ApplicationType).FirstOrDefault(u=>u.ProductId == id);
             //product.Category = _db.Category.Find(product.CategoryId);
             if (product == null) return NotFound();
             return View(product);
