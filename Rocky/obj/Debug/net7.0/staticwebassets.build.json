@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wgTC6OV0s+hsVvzLR3v5T4flK91hdBCqNuFQWEsw0Rs=",
+  "Hash": "N4Yy5QkmW5Ch+uViJv4SAce0YL+FFe7mUpFA4r2B9ck=",
   "Source": "Rocky",
   "BasePath": "_content/Rocky",
   "Mode": "Default",
@@ -28643,40 +28643,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\fontawesome\\webfonts\\fa-solid-900.woff2"
-    },
-    {
-      "Identity": "D:\\Учеба\\Самостоятельно\\C Sharp\\LessonCSharp\\Rocky\\Rocky\\wwwroot\\images\\product\\52fe0e97-c5b6-4816-830d-70b5c07c6540.jpg",
-      "SourceId": "Rocky",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Учеба\\Самостоятельно\\C Sharp\\LessonCSharp\\Rocky\\Rocky\\wwwroot\\",
-      "BasePath": "_content/Rocky",
-      "RelativePath": "images/product/52fe0e97-c5b6-4816-830d-70b5c07c6540.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\product\\52fe0e97-c5b6-4816-830d-70b5c07c6540.jpg"
-    },
-    {
-      "Identity": "D:\\Учеба\\Самостоятельно\\C Sharp\\LessonCSharp\\Rocky\\Rocky\\wwwroot\\images\\product\\77a0842e-fb24-43d9-8005-95e6f0bf6aaa.jpg",
-      "SourceId": "Rocky",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Учеба\\Самостоятельно\\C Sharp\\LessonCSharp\\Rocky\\Rocky\\wwwroot\\",
-      "BasePath": "_content/Rocky",
-      "RelativePath": "images/product/77a0842e-fb24-43d9-8005-95e6f0bf6aaa.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\product\\77a0842e-fb24-43d9-8005-95e6f0bf6aaa.jpg"
     },
     {
       "Identity": "D:\\Учеба\\Самостоятельно\\C Sharp\\LessonCSharp\\Rocky\\Rocky\\wwwroot\\js\\site.js",
